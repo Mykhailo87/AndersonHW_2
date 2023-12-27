@@ -1,17 +1,21 @@
 function makeObjectDeepCopy(obj) {
-    let copiedObj = {};
+  if (typeof obj !== 'object') {
+    return obj;
+  }
+
+  let copiedObj = {};
   
-    for(let key in obj){
-      if (obj.hasOwnProperty(key)) {
-        if (typeof obj[key] === 'object') {
-          copiedObj[key] = makeObjectDeepCopy(obj[key]);
-        } else {
-          copiedObj[key] = obj[key];
-        }
+  for(let key in obj){
+    if (obj.hasOwnProperty(key)) {
+      if (typeof obj[key] === 'object') {
+        copiedObj[key] = makeObjectDeepCopy(obj[key]);
+      } else {
+        copiedObj[key] = obj[key];
       }
     }
+  }
   
-    return copiedObj;
+  return copiedObj;
 }
 
 function selectFromInterval(numbersArr, firstIntervalValue, secondIntervalValue) {
